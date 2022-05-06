@@ -213,9 +213,10 @@ public class BinarySearchTree<T extends Comparable<T>> {
 		if( node==null) {
 			return;
 		}
-		in.add(node);
-		addPostOrderStack(node.rightChild,in);
 		addPostOrderStack(node.leftChild,in);
+		addPostOrderStack(node.rightChild,in);
+		in.add(node);
+
 
 	}
 	
@@ -242,8 +243,8 @@ public class BinarySearchTree<T extends Comparable<T>> {
 		bst.insert(2);
 		bst.insert(8);
 		bst.insert(15);
-		//bst.insert(10);
-		//bst.insert(3);
+		bst.insert(10);
+		bst.insert(3);
 		System.out.println(bst);
 	
 		System.out.println("In Order Traversals");
