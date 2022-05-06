@@ -142,8 +142,8 @@ public class BinarySearchTree<T extends Comparable<T>> {
 		if(node==null) {
 			return;
 		}
-		preOrderaddToStack(node.rightChild, in);
 		preOrderaddToStack(node.leftChild, in);
+		preOrderaddToStack(node.rightChild, in);
 		in.add(node);
 	}
 		
