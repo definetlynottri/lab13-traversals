@@ -112,7 +112,7 @@ public class BinarySearchTree<T extends Comparable<T>> {
 		}
 		
 	}
-	
+	// methods edited by Tri, preorder , recurse, stack , add to stack
 	//Traverse the tree in an preorder fashion
 	//Print the current node first and then recurse on the children
 	public void preOrder() {
@@ -120,14 +120,32 @@ public class BinarySearchTree<T extends Comparable<T>> {
 	}
 	
 	private void preOrderRecurse(BSTNode<T> node) {
-		
+		if(node==null) {
+			return;
+		}
+		System.out.println(node.data);
+		preOrderRecurse(node.leftChild);
+		preOrderRecurse(node.rightChild);
 	}
 	
 	//Traverse the tree in an preorder fashion but using a stack
 	//Print the current node first and then recurse on the children
 	public void preOrderStack() {
-		Stack<BSTNode<T>> pre = new Stack<BSTNode<T>>();
-		System.out.println("PreOrder test commit");
+		Stack<BSTNode<T>> in = new Stack<BSTNode<T>>();
+		preOrderaddToStack(root, in);
+		while(in.size()>0) {
+			System.out.println(in.pop().data);
+		}
+	}
+	
+
+	public void preOrderaddToStack(BSTNode<T> node, Stack<BSTNode<T>> in) {
+		if(node==null) {
+			return;
+		}
+		preOrderaddToStack(node.leftChild, in);
+		preOrderaddToStack(node.rightChild, in);
+		in.add(node);
 	}
 		
 
@@ -141,31 +159,14 @@ public class BinarySearchTree<T extends Comparable<T>> {
 	}
 	
 	public void inOrderRecurse(BSTNode<T> node) {
-		if(node==null) {
-			return;
-		}
-		System.out.println(node.data);
-		inOrderRecurse(node.leftChild);
-		inOrderRecurse(node.rightChild);
+		
 	}
 	//Traverse the tree in an inorder fashion but using a stack
 	public void inOrderStack() {
-		Stack<BSTNode<T>> in = new Stack<BSTNode<T>>();
-		preOrderaddToStack(root, in);
-		while(in.size()>0) {
-			System.out.println(in.pop().data);
-		}
+		
 		
 	}
 	
-	public void preOrderaddToStack(BSTNode<T> node, Stack<BSTNode<T>> in) {
-		if(node==null) {
-			return;
-		}
-		preOrderaddToStack(node.leftChild, in);
-		preOrderaddToStack(node.rightChild, in);
-		in.add(node);
-	}
 	
 	//Traverse the tree in an postorder fashion
 	//Recurse on the children and then print the value in the current node
