@@ -181,9 +181,9 @@ public class BinarySearchTree<T extends Comparable<T>> {
 		{
 			return;
 		}
-		inOrderAddToStack(node.rightChild, in);
-		in.add(node);
 		inOrderAddToStack(node.leftChild, in);
+		in.add(node);
+		inOrderAddToStack(node.rightChild, in);
 	}
 	
 	
