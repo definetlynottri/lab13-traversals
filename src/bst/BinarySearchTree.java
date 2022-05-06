@@ -187,33 +187,31 @@ public class BinarySearchTree<T extends Comparable<T>> {
 	//Traverse the tree in an postorder fashion
 	//Recurse on the children and then print the value in the current node
 	public void postOrder() {
-		postOrderRecurse(root); 
-		System.out.println("PostOrder test Commit");
+		System.out.println( "dai post order test");
+		postOrderRecurse(root);
 	}
-	
 	public void postOrderRecurse(BSTNode<T> node) {
-		
-		
-	}
-	
-	//Traverse the tree in an postorder fashion uses Stacks. 
-	//This is more difficult than the other traversals using a Stack
-	//I suggest using two stacks. Think about the order you want the elements
-	//to appear on the stack you will print.
-	public void postOrderStack() {
-		Stack<BSTNode<T>> post = new Stack<>();
-		Stack<BSTNode<T>> postHelper = new Stack<>();
-		if(root!=null) {
-			postHelper.push(root);
-			while(!postHelper.isEmpty()) {
-				//how should post and postHelper be updated?
-			}
-			
-			while(!post.isEmpty()) {
-				BSTNode<T> node = post.pop();
-				System.out.print(node + " ");
-			}
+		if (node == null) {
+			return;
 		}
+		postOrderRecurse(node.leftChild);
+		postOrderRecurse(node.rightChild);
+		System.out.println(node.data);
+
+	}
+	public void postOrderStack() { 
+		Stack<BSTNode<T>> post = new Stack<>();
+		addPostOrderStack(root,post);
+		System.out.print(post);
+
+	}
+	public void addPostOrderStack(BSTNode<T> node, Stack<BSTNode<T>> in) {
+		if( node==null) {
+			return;
+		}
+		in.add(node);
+		addPostOrderStack(node.rightChild,in);
+		addPostOrderStack(node.leftChild,in);
 
 	}
 	
